@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react' 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () =>{
+  const [counter, setCounter] = React.useState(0);
+  const [number, setNumber] = React.useState(0);
+  const Factorial = React.useMemo(()=>fact(number), [number]);
+
+  return(
+    
+   <center>
+    Factorial : {Factorial} <br/>
+    <button onClick={ () => setCounter(counter + 1)}>Counter Increment</button> <br/>
+    <button onClick={ () => setNumber(number + 1)}>Factorial Increment</button> <br/>
+    counter : {counter}
+   </center>
+  )
 }
 
-export default App;
+const fact = (n) => {
+  let answer = 1;
+  for(var i=n; i>=1; i--){
+    answer = answer * i;
+  }
+  console.log('Factorial function calling');
+  return answer
+}
+export default App
